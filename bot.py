@@ -1,8 +1,3 @@
-#
-# Copyright (c) 2024–2025, Daily
-#
-# SPDX-License-Identifier: BSD 2-Clause License
-#
 
 """Pipecat Twilio Phone Example.
 
@@ -11,7 +6,7 @@ phone via Twilio.
 
 Required AI services:
 - Deepgram (Speech-to-Text)
-- OpenAI (LLM)
+- Groq (LLM)
 - Cartesia (Text-to-Speech)
 
 The example connects between client and server using a Twilio websocket
@@ -38,7 +33,9 @@ from pipecat.runner.utils import parse_telephony_websocket
 from pipecat.serializers.twilio import TwilioFrameSerializer
 from pipecat.services.cartesia.tts import CartesiaTTSService
 from pipecat.services.deepgram.stt import DeepgramSTTService
+from pipecat.services.elevenlabs.tts import ElevenLabsTTSService
 from pipecat.services.openai.llm import OpenAILLMService
+from pipecat.services.groq.llm import GroqLLMService
 from pipecat.transports.base_transport import BaseTransport
 from pipecat.transports.network.fastapi_websocket import (
     FastAPIWebsocketParams,
@@ -56,9 +53,10 @@ async def run_bot(transport: BaseTransport):
     tts = CartesiaTTSService(
         api_key=os.getenv("CARTESIA_API_KEY"),
         voice_id="71a7ad14-091c-4e8e-a314-022ece01c121",  # British Reading Lady
+
     )
 
-    llm = OpenAILLMService(api_key=os.getenv("OPENAI_API_KEY"))
+    llm = GroqLLMService(api_key=os.getenv("GROQ_API_KEY"),model="llama-3.3-70b-versatile")
 
     messages = [
         {
@@ -90,10 +88,13 @@ async def run_bot(transport: BaseTransport):
         params=PipelineParams(
             audio_in_sample_rate=8000,
             audio_out_sample_rate=8000,
+            report_only_initial_ttfb=True,
             enable_metrics=True,
             enable_usage_metrics=True,
         ),
-        observers=[RTVIObserver(rtvi)],
+        observers=[
+            RTVIObserver(rtvi),
+            ],
     )
 
     @transport.event_handler("on_client_connected")
@@ -142,5 +143,4 @@ async def bot(runner_args: RunnerArguments):
 
 if __name__ == "__main__":
     from pipecat.runner.run import main
-
     main()
