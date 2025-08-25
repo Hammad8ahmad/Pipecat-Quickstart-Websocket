@@ -56,7 +56,11 @@ async def run_bot(transport: BaseTransport):
 
     )
 
-    llm = GroqLLMService(api_key=os.getenv("GROQ_API_KEY"),model="llama-3.3-70b-versatile")
+    llm = GroqLLMService(api_key=os.getenv("GROQ_API_KEY"),
+                         model="llama-3.3-70b-versatile",
+                         streaming=True,
+                         tokens=1024
+                         )
 
     messages = [
         {
