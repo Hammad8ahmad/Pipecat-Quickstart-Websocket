@@ -7,7 +7,7 @@ Learn how to connect your Pipecat bot to a phone number so users can call and ha
 - Python 3.10+
 - [ngrok](https://ngrok.com/docs/getting-started/) (for tunneling)
 - [Twilio Account](https://www.twilio.com/login) and [phone number](https://help.twilio.com/articles/223135247-How-to-Search-for-and-Buy-a-Twilio-Phone-Number-from-Console)
-- AI Service API keys for: [Deepgram](https://console.deepgram.com/signup), [OpenAI](https://auth.openai.com/create-account), and [Cartesia](https://play.cartesia.ai/sign-up)
+- AI Service API keys for: [Deepgram](https://console.deepgram.com/signup), [Groq](https://groq.com/), and [Cartesia](https://play.cartesia.ai/sign-up)
 
 ## Setup
 
@@ -16,8 +16,8 @@ This example requires running both a server and ngrok tunnel in **two separate t
 ### Clone this repository
 
 ```bash
-git clone https://github.com/pipecat-ai/pipecat-quickstart-phone-bot.git
-cd pipecat-quickstart-phone-bot
+git clone https://github.com/pipecat-ai/Pipecat-Quickstart-Websocket.git
+cd Pipecat-Quickstart-Websocket
 ```
 
 ### Terminal 1: Start ngrok and Configure Twilio
@@ -65,7 +65,7 @@ cd pipecat-quickstart-phone-bot
    ```
    DEEPGRAM_API_KEY=your_deepgram_api_key
    OPENAI_API_KEY=your_openai_api_key
-   CARTESIA_API_KEY=your_cartesia_api_key
+   GROQ_API_KEY=your_groq_api_key
    ```
 
    > Optional: Add your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` to enable auto-hangup.
@@ -111,9 +111,3 @@ cd pipecat-quickstart-phone-bot
 4. **Processing**: Audio flows through your Pipecat Pipeline
 5. **Response**: Synthesized speech streams back to caller
 
-## Next Steps
-
-- **Deploy to production**: Replace ngrok with a proper server deployment
-- **Explore other telephony providers**: Try [Telnyx](https://github.com/pipecat-ai/pipecat-examples/tree/main/telnyx-chatbot) or [Plivo](https://github.com/pipecat-ai/pipecat-examples/tree/main/plivo-chatbot) examples
-- **Advanced telephony features**: Check out [pipecat-examples](https://github.com/pipecat-ai/pipecat-examples) for call recording, transfer, and more
-- **Join Discord**: Connect with other developers on [Discord](https://discord.gg/pipecat)
