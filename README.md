@@ -16,7 +16,7 @@ This example requires running both a server and ngrok tunnel in **two separate t
 ### Clone this repository
 
 ```bash
-git clone https://github.com/pipecat-ai/Pipecat-Quickstart-Websocket.git
+git clone https://github.com/Hammad8ahmad/Pipecat-Quickstart-Websocket.git
 cd Pipecat-Quickstart-Websocket
 ```
 
